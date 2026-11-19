@@ -7,19 +7,19 @@
     <title>Todo App</title>
 
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
 
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
     <link rel="stylesheet" href="./assets/css/todo.css" />
   </head>
 
   <body>
-  <nav class="navbar" style="background-color: #000000;">
+  <nav class="navbar">
       <div class="app-header">
-        <a class="title" href="" style="color: #f0ab3c;">Python in the Browser</a>
+        <a class="title" href="./todo.html">Daylist</a>
       </div>
     </nav>
-    <section class="pyscript">
+    <section class="pyscript app-main">
   <py-config>
     [[fetch]]
     files = ["./utils.py"]
@@ -27,44 +27,34 @@
 
   <py-script src="./todo.py">  </py-script>
 
-  <main>
-    <section>
+    <main class="todo-card">
+      <header class="intro">
+        <p class="eyebrow">A little progress adds up</p>
+        <h1>Your to-do list</h1>
+        <p>Make space for what matters. Add a task and take it one step at a time.</p>
+      </header>
 
-    <div class="text-center w-full mb-8">
-      <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-tight">To Do List</h1>
-    </div>
-    <div>
-      <input id="new-task-content" class="py-input" type="text">
-      <button id="new-task-btn" class="py-button" type="submit" py-click="add_task()">
-        Add task
-      </button>
-    </div>
+      <div class="task-entry">
+        <input id="new-task-content" type="text" placeholder="What would you like to get done?" aria-label="New task">
+        <button id="new-task-btn" type="button" py-click="add_task()">Add task</button>
+      </div>
 
-    <py-list id="myList"></py-list>
-    <div id="list-tasks-container" class="flex flex-col-reverse mt-4">
-  </div>
+      <div class="tasks-heading">
+        <h2>Tasks</h2>
+        <span>Check them off as you go</span>
+      </div>
 
-    <template id="task-template">
+      <div id="list-tasks-container" aria-live="polite"></div>
+
+      <template id="task-template">
         <section class="task py-li-element">
-            <label for="flex items-center p-2 ">
-              <input class="mr-2" type="checkbox">
-              <p class="m-0 inline"></p>
-            </label>
+          <label class="task-label">
+            <input type="checkbox" aria-label="Mark task complete">
+            <p></p>
+          </label>
         </section>
       </template>
-
-  </section>
-  </main>
-   </section>
-  
-  <script>
-    const viewCodeButton = document.getElementById("view-code-button");
-    viewCodeButton.addEventListener("click", handleClick)
-    viewCodeButton.addEventListener("keydown", (e) => {
-      if (e.key === " " || e.key === "Enter" || e.key === "Spacebar") {
-        handleClick();
-      }
-    })
-  </script>
+    </main>
+    </section>
 </body>
 </html>
